@@ -73,13 +73,14 @@ export default function Lanyard({
           position,
           fov,
         }}
-        dpr={isMobile ? 1 : 1.5}
+        dpr={isMobile ? 0.75 : 1.5}
         gl={{
           alpha: transparent,
           antialias: false,
-          powerPreference: 'high-performance',
+          powerPreference: 'low-power',
           stencil: false,
           depth: true,
+          precision: isMobile ? 'lowp' : 'mediump',
         }}
         onCreated={({ gl }) => {
           gl.setClearColor(
@@ -99,8 +100,9 @@ export default function Lanyard({
         {/* Physics */}
         <Physics
           gravity={gravity}
-          timeStep={isMobile ? 1 / 30 : 1 / 60}
-          maxStabilizationIterations={isMobile ? 1 : 3}
+          timeStep={isMobile ? 1 / 15 : 1 / 60}
+          maxStabilizationIterations={isMobile ? 0 : 3}
+          numSolverIterations={isMobile ? 2 : 4}
         >
           <Band isMobile={isMobile} onCardHover={setIsCardHovered} maxSpeed={isMobile ? 12 : 20} minSpeed={isMobile ? 3 : 5} />
         </Physics>
@@ -163,8 +165,8 @@ function Band({
     type: "dynamic" as RigidBodyProps["type"],
     canSleep: true,
     colliders: false,
-    angularDamping: 4,
-    linearDamping: 4,
+    angularDamping: isMobile ? 3 : 4,
+    linearDamping: isMobile ? 3 : 4,
   };
 
   const { nodes, materials } = useGLTF("/card.glb") as any;
@@ -173,9 +175,10 @@ function Band({
   useEffect(() => {
   if (!texture) return;
 
-  texture.anisotropy = 16;
+  texture.anisotropy = isMobile ? 4 : 16;
+  texture.minFilter = isMobile ? THREE.LinearFilter : THREE.LinearMipmapLinearFilter;
   texture.needsUpdate = true;
-}, [texture]);
+}, [texture, isMobile]);
 
   const [curve] = useState(
     () =>
@@ -466,11 +469,11 @@ function Band({
       <meshLineMaterial
         color="white"
         depthTest={false}
-        resolution={[512, 512]}
+        resolution={isMobile ? [256, 256] : [512, 512]}
         useMap
         map={texture}
         repeat={[-4, 1]}
-        lineWidth={1}
+        lineWidth={isMobile ? 0.5 : 1}
       />
     </mesh>
   </>

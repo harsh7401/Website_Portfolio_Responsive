@@ -272,7 +272,12 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* RIGHT SIDE - Lanyard is now on the left side with proper responsive handling */}
+            {/* RIGHT SIDE */}
+            <div className="flex justify-center items-center lg:h-full max-lg:py-6 max-lg:pb-10 lg:pl-5">
+              <div className="w-full lg:h-200 lg:translate-x-56 ">
+                {ready && !isMobile && <Lanyard position={[0, 0, 24]} gravity={[0, -40, 0]} />}
+              </div>
+            </div>
 
           </div>
         </div>
@@ -281,10 +286,4 @@ export default function Hero() {
       <div className="pointer-events-none absolute bottom-0 left-0 w-full h-60 bg-linear-to-t from-black to-transparent z-10" />
     </section>
   );
-}*/}
-            
-<div className="flex justify-center items-center lg:h-full max-lg:py-6 max-lg:pb-10 lg:pl-5">
-  <div className="w-full lg:h-200 lg:translate-x-56 ">
-    {ready && !isMobile && <Lanyard position={[0, 0, 24]} gravity={[0, -40, 0]} />}
-  </div>
-</div>
+}

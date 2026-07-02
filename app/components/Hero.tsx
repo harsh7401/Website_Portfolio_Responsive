@@ -71,25 +71,7 @@ export default function Hero() {
             mouseRadius={0.35}
           />
 
-          {/* Lanyard 3D band - responsive settings */}
-          <div className="pointer-events-none">
-            <div
-              className={
-                isMobile
-                  ? 'absolute right-4 top-20 w-44 h-56 lg:hidden pointer-events-none'
-                  : 'absolute right-8 bottom-8 w-96 h-72 hidden lg:block pointer-events-none'
-              }
-            >
-              <Lanyard
-                // smaller camera / closer view on mobile and slightly larger visually via size
-                position={isMobile ? [0, 0, 14] : [0, 0, 30]}
-                fov={isMobile ? 30 : 20}
-                gravity={isMobile ? [0, -20, 0] : [0, -40, 0]}
-                transparent={true}
-                size={isMobile ? 1.35 : 1}
-              />
-            </div>
-          </div>
+
         </>
         )}
       </div>
@@ -290,13 +272,7 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* RIGHT SIDE */}
-            
-<div className="flex justify-center items-center lg:h-full max-lg:py-6 max-lg:pb-10 lg:pl-5">
-  <div className="w-full lg:h-200 lg:translate-x-56 ">
-    {ready && !isMobile && <Lanyard position={[0, 0, 24]} gravity={[0, -40, 0]} />}
-  </div>
-</div>
+            {/* RIGHT SIDE - Lanyard is now on the left side with proper responsive handling */}
 
           </div>
         </div>
@@ -305,4 +281,10 @@ export default function Hero() {
       <div className="pointer-events-none absolute bottom-0 left-0 w-full h-60 bg-linear-to-t from-black to-transparent z-10" />
     </section>
   );
-}
+}*/}
+            
+<div className="flex justify-center items-center lg:h-full max-lg:py-6 max-lg:pb-10 lg:pl-5">
+  <div className="w-full lg:h-200 lg:translate-x-56 ">
+    {ready && !isMobile && <Lanyard position={[0, 0, 24]} gravity={[0, -40, 0]} />}
+  </div>
+</div>

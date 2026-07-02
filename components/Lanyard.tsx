@@ -73,11 +73,13 @@ export default function Lanyard({
           position,
           fov,
         }}
-        dpr={isMobile ? 1.5 : 2}
+        dpr={isMobile ? 1 : 1.5}
         gl={{
           alpha: transparent,
           antialias: false,
           powerPreference: 'high-performance',
+          stencil: false,
+          depth: true,
         }}
         onCreated={({ gl }) => {
           gl.setClearColor(
@@ -92,20 +94,21 @@ export default function Lanyard({
         }}
       >
         {/* Lighting */}
-        <ambientLight intensity={1.5} />
+        <ambientLight intensity={isMobile ? 0.8 : 1.5} />
 
         {/* Physics */}
         <Physics
           gravity={gravity}
-          timeStep={1 / 45}
+          timeStep={isMobile ? 1 / 30 : 1 / 60}
+          maxStabilizationIterations={isMobile ? 1 : 3}
         >
-          <Band isMobile={isMobile} onCardHover={setIsCardHovered} />
+          <Band isMobile={isMobile} onCardHover={setIsCardHovered} maxSpeed={isMobile ? 12 : 20} minSpeed={isMobile ? 3 : 5} />
         </Physics>
 
         {/* Environment */}
-        <Environment blur={0.5}>
+        <Environment blur={isMobile ? 0.2 : 0.5}>
           <Lightformer
-            intensity={3}
+            intensity={isMobile ? 1.5 : 3}
             color="white"
             position={[0, -1, 5]}
             rotation={[0, 0, Math.PI / 3]}
@@ -113,7 +116,7 @@ export default function Lanyard({
           />
 
           <Lightformer
-            intensity={5}
+            intensity={isMobile ? 2 : 5}
             color="white"
             position={[-6, 0, 10]}
             rotation={[

@@ -101,7 +101,6 @@ export default function Lanyard({
         <Physics
           gravity={gravity}
           timeStep={isMobile ? 1 / 15 : 1 / 60}
-          maxStabilizationIterations={isMobile ? 0 : 3}
           numSolverIterations={isMobile ? 2 : 4}
         >
           <Band isMobile={isMobile} onCardHover={setIsCardHovered} maxSpeed={isMobile ? 12 : 20} minSpeed={isMobile ? 3 : 5} />

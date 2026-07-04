@@ -35,24 +35,25 @@ export default function About() {
       {/* Background */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="absolute inset-0 z-0">
-          {inView && (
+          {inView && !isMobile && (
         <Ferrofluid
             colors={["#4F46E5", "#06B6D4", "#E0F2FE"]}
-            speed={isMobile ? 0.14 : 0.2}
-            scale={isMobile ? 1.15 : 1.6}
-            turbulence={isMobile ? 0.75 : 1}
+            speed={0.2}
+            scale={1.6}
+            turbulence={1}
             fluidity={0.1}
-            rimWidth={isMobile ? 0.16 : 0.2}
-            sharpness={isMobile ? 2.8 : 3.6}
-            shimmer={isMobile ? 0.85 : 1.1}
-            glow={isMobile ? 1.1 : 1.6}
+            rimWidth={0.2}
+            sharpness={3.6}
+            shimmer={1.1}
+            glow={1.6}
             flowDirection="down"
             opacity={1}
-            mouseInteraction={!isMobile}
+            mouseInteraction
             mouseStrength={1}
             mouseRadius={0.35}
           />
         )}
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-950/30 via-black to-cyan-950/20" />
       </div>
       </div>
 

@@ -56,29 +56,25 @@ export default function Hero() {
     >
       {/* Background */}
       <div className="absolute inset-0 z-0">
-        {ready && (
-        <>
+        {ready && !isMobile && (
           <Ferrofluid
-            dpr={isMobile ? 0.5 : 1}
             colors={["#4F46E5", "#06B6D4", "#E0F2FE"]}
-            speed={isMobile ? 0.15 : 0.2}
-            scale={isMobile ? 1.2 : 1.6}
-            turbulence={isMobile ? 0.6 : 1}
-            fluidity={isMobile ? 0.15 : 0.1}
-            rimWidth={isMobile ? 0.3 : 0.2}
-            sharpness={isMobile ? 2.5 : 3.6}
-            shimmer={isMobile ? 0.6 : 1.1}
-            glow={isMobile ? 0.8 : 1.6}
+            speed={0.2}
+            scale={1.6}
+            turbulence={1}
+            fluidity={0.1}
+            rimWidth={0.2}
+            sharpness={3.6}
+            shimmer={1.1}
+            glow={1.6}
             flowDirection="down"
             opacity={1}
-            mouseInteraction={!isMobile}
+            mouseInteraction
             mouseStrength={1}
             mouseRadius={0.35}
           />
-
-
-        </>
         )}
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-950/40 via-black to-cyan-950/30" />
       </div>
       {/* <div className="absolute inset-0 z-40">
   <SideRays

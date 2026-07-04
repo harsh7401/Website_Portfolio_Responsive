@@ -1,15 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import TextType from "@/components/TextType";
 import BlurText from "@/components/BlurText";
-import RotatingText from "@/components/RotatingText";
 
 
 export  function Loader() {
   const [progress, setProgress] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
 useEffect(() => {
+  setIsMobile(window.innerWidth < 768);
 const interval = setInterval(() => {
 setProgress((prev) => {
 if (prev >= 100) {
@@ -24,9 +24,6 @@ return 100;
 
 return () => clearInterval(interval);
 }, []);
-  const handleAnimationComplete = () => {
-  console.log('Animation completed!');
-};
 
   return (
     <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-black">
@@ -36,34 +33,37 @@ return () => clearInterval(interval);
         <div className="h-[600px] w-[600px] sm:h-[800px] sm:w-[800px] rounded-full bg-teal-400/25 blur-[100px] sm:blur-[140px]" />
       </div>
 
-      <BlurText
-      className="text-5xl sm:text-6xl lg:text-8xl font-black text-white"
-  text="HARSH"
-  delay={200}
-  animateBy="words"
-  direction="top"
-  onAnimationComplete={handleAnimationComplete}
-/>
-
-
-<BlurText
-      className="text-5xl sm:text-6xl lg:text-8xl font-black text-[#4FD1C5]
-"
-  text="SHRIVASTAVA"
-  delay={200}
-  animateBy="words"
-  direction="top"
-  onAnimationComplete={handleAnimationComplete}
-/>
-      
-      <BlurText
-      className="mt-3 text-gray-400"
-  text="Full Stack Developer"
-  delay={200}
-  animateBy="words"
-  direction="top"
-  onAnimationComplete={handleAnimationComplete}
-/>
+      {isMobile ? (
+        <>
+          <h1 className="text-5xl font-black text-white">HARSH</h1>
+          <h1 className="text-5xl font-black text-[#4FD1C5]">SHRIVASTAVA</h1>
+          <p className="mt-3 text-gray-400">Full Stack Developer</p>
+        </>
+      ) : (
+        <>
+          <BlurText
+            className="text-5xl sm:text-6xl lg:text-8xl font-black text-white"
+            text="HARSH"
+            delay={200}
+            animateBy="words"
+            direction="top"
+          />
+          <BlurText
+            className="text-5xl sm:text-6xl lg:text-8xl font-black text-[#4FD1C5]"
+            text="SHRIVASTAVA"
+            delay={200}
+            animateBy="words"
+            direction="top"
+          />
+          <BlurText
+            className="mt-3 text-gray-400"
+            text="Full Stack Developer"
+            delay={200}
+            animateBy="words"
+            direction="top"
+          />
+        </>
+      )}
 
     <div className="relative mt-10 h-2 w-[85%] max-w-xs sm:w-80 overflow-hidden rounded-full bg-white/10">
   <div
@@ -85,20 +85,6 @@ return () => clearInterval(interval);
         {progress}%
       </p>
 
-<TextType
-
-  text={[
-    "Hover each component to see the magic",
-    "Welcome to my portfolio"
-  ]}
-  className="text-base sm:text-xl md:text-3xl lg:text-5xl font-bold pt-10"
-  typingSpeed={40}
-  deletingSpeed={20}
-  pauseDuration={50}
-  initialDelay={0}
-  loop={true}
-  showCursor
-/>
     </div>
     
   );

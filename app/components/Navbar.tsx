@@ -32,6 +32,7 @@ export default function Navbar() {
   };
 
   useEffect(() => {
+    if (window.innerWidth < 768) return;
     AOS.init({
       duration: 800,
       once: true,

@@ -70,7 +70,15 @@ const projects = [
 
 export function Projects() {
   const [inView, setInView] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -89,7 +97,7 @@ export function Projects() {
     >
       {/* Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        {inView && (
+        {inView && !isMobile && (
         <Ferrofluid
           colors={["#4F46E5", "#06B6D4", "#E0F2FE"]}
           speed={0.2}
@@ -107,6 +115,7 @@ export function Projects() {
           mouseRadius={0.35}
         />
       )}
+      <div className="absolute inset-0 bg-gradient-to-br from-indigo-950/30 via-black to-cyan-950/20" />
     </div>
 
       {/* Content */}

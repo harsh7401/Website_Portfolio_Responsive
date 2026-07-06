@@ -8,7 +8,6 @@ export default function Hero() {
   const [ready, setReady] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [heroOffset, setHeroOffset] = useState<number | null>(null);
-  const [isSmallDevice, setIsSmallDevice] = useState(false);
 
   useEffect(() => {
     const t = setTimeout(() => setReady(true), 200);
@@ -18,7 +17,6 @@ export default function Hero() {
   useEffect(() => {
     const check = () => {
       setIsMobile(window.innerWidth < 768);
-      setIsSmallDevice(window.innerWidth < 640 || window.innerHeight < 800);
     };
     check();
     window.addEventListener("resize", check);
@@ -276,7 +274,7 @@ export default function Hero() {
             {/* RIGHT SIDE */}
             <div className="flex justify-center items-center lg:h-full max-lg:py-6 max-lg:pb-10 lg:pl-5">
               <div className="w-full lg:h-200 lg:translate-x-56 ">
-                {ready && !isMobile && !isSmallDevice && <Lanyard position={[0, 0, 24]} gravity={[0, -40, 0]} />}
+                {ready && <Lanyard position={[0, 2, 32]} fov={30} gravity={[0, -40, 0]} size={1.1} />}
               </div>
             </div>
 

@@ -6,6 +6,14 @@ import Shuffle from "@/components/Shuffle";
 import RotatingText from "@/components/RotatingText";
 export default function Hero() {
   const [ready, setReady] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 1024);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   useEffect(() => {
     const t = setTimeout(() => setReady(true), 200);
@@ -21,18 +29,19 @@ export default function Hero() {
       <div className="absolute inset-0 z-0">
         {ready && (
         <Ferrofluid
+          dpr={isMobile ? 0.35 : 1}
           colors={["#4F46E5", "#06B6D4", "#E0F2FE"]}
-          speed={0.2}
-          scale={1.6}
-          turbulence={1}
-          fluidity={0.1}
-          rimWidth={0.2}
-          sharpness={3.6}
-          shimmer={1.1}
-          glow={1.6}
+          speed={isMobile ? 0.1 : 0.2}
+          scale={isMobile ? 1.0 : 1.6}
+          turbulence={isMobile ? 0.5 : 1}
+          fluidity={isMobile ? 0.2 : 0.1}
+          rimWidth={isMobile ? 0.25 : 0.2}
+          sharpness={isMobile ? 2.0 : 3.6}
+          shimmer={isMobile ? 0.4 : 1.1}
+          glow={isMobile ? 0.6 : 1.6}
           flowDirection="down"
           opacity={1}
-          mouseInteraction
+          mouseInteraction={!isMobile}
           mouseStrength={1}
           mouseRadius={0.35}
         />

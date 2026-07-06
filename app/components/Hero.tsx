@@ -6,24 +6,16 @@ import Shuffle from "@/components/Shuffle";
 import RotatingText from "@/components/RotatingText";
 export default function Hero() {
   const [ready, setReady] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const t = setTimeout(() => setReady(true), 200);
     return () => clearTimeout(t);
   }, []);
 
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
-
   return (
     <section
       id="home"
-      className="relative min-h-screen w-full overflow-hidden bg-black scroll-mt-36"
+      className="relative min-h-dvh w-full overflow-x-hidden bg-black scroll-mt-36"
     >
       {/* Background */}
       <div className="absolute inset-0 z-0">
@@ -63,12 +55,12 @@ export default function Hero() {
 </div> */}
 
       {/* Content */}
-      <div className="relative z-10 min-h-screen">
-        <div className=" h-screen max-w-7xl px-4 sm:px-8 lg:px-16">
-          <div className="grid h-full grid-cols-1 lg:grid-cols-[60%_40%]">
+      <div className="relative z-10 min-h-dvh">
+        <div className="h-dvh max-lg:h-auto max-lg:min-h-dvh max-w-7xl px-4 sm:px-8 lg:px-16">
+          <div className="grid h-full max-lg:min-h-dvh grid-cols-1 lg:grid-cols-[60%_40%]">
 
             {/* LEFT SIDE */}
-            <div className="flex flex-col justify-end pb-16 sm:pb-24">
+            <div className="flex flex-col justify-end max-lg:justify-center pb-16 sm:pb-24">
 
 <Shuffle 
  className="
@@ -227,9 +219,9 @@ export default function Hero() {
 
             {/* RIGHT SIDE */}
             
-<div className="flex justify-center items-center lg:h-full max-lg:py-6 max-lg:pb-10 lg:pl-5">
-  <div className="w-full md:h-200 lg:translate-x-56 ">
-    {ready && !isMobile && <Lanyard position={[0, 0, 24]} gravity={[0, -40, 0]} />}
+<div className="hidden lg:flex justify-center items-center lg:h-full lg:pl-5">
+  <div className="w-full lg:h-200 lg:translate-x-56">
+    {ready && <Lanyard position={[0, 0, 24]} gravity={[0, -40, 0]} />}
   </div>
 </div>
 

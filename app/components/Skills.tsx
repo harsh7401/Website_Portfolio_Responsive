@@ -126,7 +126,7 @@ export function Skills() {
 
   useEffect(() => {
     const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setInView(true); obs.disconnect(); } },
+      ([entry]) => { setInView(entry.isIntersecting); },
       { threshold: 0.1 }
     );
     if (sectionRef.current) obs.observe(sectionRef.current);
@@ -140,25 +140,26 @@ export function Skills() {
       className="relative flex h-screen min-h-screen flex-col overflow-hidden bg-black px-4 xs:px-5 sm:px-6 pb-5 pt-20 xs:pt-24 sm:pt-24 md:pt-24 text-white lg:px-16"
     >
       <div className="absolute inset-0 z-0">
-        {inView && !isMobile && (
+        {inView && (
         <Ferrofluid
+          dpr={isMobile ? 0.35 : 1}
           colors={["#4F46E5", "#06B6D4", "#E0F2FE"]}
-          speed={0.2}
-          scale={1.6}
-          turbulence={1}
-          fluidity={0.1}
-          rimWidth={0.2}
-          sharpness={3.6}
-          shimmer={1.1}
-          glow={1.6}
+          speed={isMobile ? 0.1 : 0.2}
+          scale={isMobile ? 1.0 : 1.6}
+          turbulence={isMobile ? 0.5 : 1}
+          fluidity={isMobile ? 0.2 : 0.1}
+          rimWidth={isMobile ? 0.25 : 0.2}
+          sharpness={isMobile ? 2.0 : 3.6}
+          shimmer={isMobile ? 0.4 : 1.1}
+          glow={isMobile ? 0.6 : 1.6}
           flowDirection="down"
           opacity={1}
-          mouseInteraction
+          mouseInteraction={!isMobile}
           mouseStrength={1}
           mouseRadius={0.35}
+          paused={!inView}
         />
       )}
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-950/30 via-black to-cyan-950/20" />
     </div>
 
       <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl flex-col">

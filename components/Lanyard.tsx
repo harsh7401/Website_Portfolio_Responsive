@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { Canvas, extend, useFrame } from '@react-three/fiber';
 import {
   useGLTF,
@@ -97,37 +97,39 @@ export default function Lanyard({
         {/* Lighting */}
         <ambientLight intensity={isMobile ? 0.8 : 1.5} />
 
-        {/* Physics */}
-        <Physics
-          gravity={gravity}
-          timeStep={isMobile ? 1 / 15 : 1 / 60}
-          numSolverIterations={isMobile ? 2 : 4}
-        >
-          <Band isMobile={isMobile} onCardHover={setIsCardHovered} maxSpeed={isMobile ? 12 : 20} minSpeed={isMobile ? 3 : 5} />
-        </Physics>
+        <Suspense fallback={null}>
+          {/* Physics */}
+          <Physics
+            gravity={gravity}
+            timeStep={isMobile ? 1 / 15 : 1 / 60}
+            numSolverIterations={isMobile ? 2 : 4}
+          >
+            <Band isMobile={isMobile} onCardHover={setIsCardHovered} maxSpeed={isMobile ? 12 : 20} minSpeed={isMobile ? 3 : 5} />
+          </Physics>
 
-        {/* Environment */}
-        <Environment blur={isMobile ? 0.2 : 0.5}>
-          <Lightformer
-            intensity={isMobile ? 1.5 : 3}
-            color="white"
-            position={[0, -1, 5]}
-            rotation={[0, 0, Math.PI / 3]}
-            scale={[50, 0.1, 1]}
-          />
+          {/* Environment */}
+          <Environment blur={isMobile ? 0.2 : 0.5}>
+            <Lightformer
+              intensity={isMobile ? 1.5 : 3}
+              color="white"
+              position={[0, -1, 5]}
+              rotation={[0, 0, Math.PI / 3]}
+              scale={[50, 0.1, 1]}
+            />
 
-          <Lightformer
-            intensity={isMobile ? 2 : 5}
-            color="white"
-            position={[-6, 0, 10]}
-            rotation={[
-              0,
-              Math.PI / 2,
-              Math.PI / 3,
-            ]}
-            scale={[50, 5, 1]}
-          />
-        </Environment>
+            <Lightformer
+              intensity={isMobile ? 2 : 5}
+              color="white"
+              position={[-6, 0, 10]}
+              rotation={[
+                0,
+                Math.PI / 2,
+                Math.PI / 3,
+              ]}
+              scale={[50, 5, 1]}
+            />
+          </Environment>
+        </Suspense>
       </Canvas>
     </div>
   );

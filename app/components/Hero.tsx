@@ -7,7 +7,6 @@ import RotatingText from "@/components/RotatingText";
 export default function Hero() {
   const [ready, setReady] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [heroOffset, setHeroOffset] = useState<number | null>(null);
 
   useEffect(() => {
     const t = setTimeout(() => setReady(true), 200);
@@ -15,36 +14,10 @@ export default function Hero() {
   }, []);
 
   useEffect(() => {
-    const check = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
+    const check = () => setIsMobile(window.innerWidth < 768);
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
-  }, []);
-
-  // Compute a dynamic bottom offset (client-only) so the text sits nicely above viewport bottom.
-  useEffect(() => {
-    const compute = () => {
-      if (window.innerWidth >= 768) {
-        setHeroOffset(null);
-        return;
-      }
-      // prefer a minimum of 48px, otherwise 10-14% of viewport height
-      const calc = Math.round(Math.max(48, window.innerHeight * 0.12));
-      setHeroOffset(calc);
-    };
-    compute();
-    let tid = 0 as any;
-    const onResize = () => {
-      clearTimeout(tid);
-      tid = setTimeout(compute, 120);
-    };
-    window.addEventListener('resize', onResize);
-    return () => {
-      clearTimeout(tid);
-      window.removeEventListener('resize', onResize);
-    };
   }, []);
 
   return (
@@ -55,23 +28,22 @@ export default function Hero() {
       {/* Background */}
       <div className="absolute inset-0 z-0">
         {ready && (
-          <Ferrofluid
-            dpr={isMobile ? 0.35 : 1}
-            colors={["#4F46E5", "#06B6D4", "#E0F2FE"]}
-            speed={isMobile ? 0.12 : 0.2}
-            scale={isMobile ? 1.0 : 1.6}
-            turbulence={isMobile ? 0.5 : 1}
-            fluidity={isMobile ? 0.2 : 0.1}
-            rimWidth={isMobile ? 0.3 : 0.2}
-            sharpness={isMobile ? 2.0 : 3.6}
-            shimmer={isMobile ? 0.4 : 1.1}
-            glow={isMobile ? 0.6 : 1.6}
-            flowDirection="down"
-            opacity={1}
-            mouseInteraction={!isMobile}
-            mouseStrength={1}
-            mouseRadius={0.35}
-          />
+        <Ferrofluid
+          colors={["#4F46E5", "#06B6D4", "#E0F2FE"]}
+          speed={0.2}
+          scale={1.6}
+          turbulence={1}
+          fluidity={0.1}
+          rimWidth={0.2}
+          sharpness={3.6}
+          shimmer={1.1}
+          glow={1.6}
+          flowDirection="down"
+          opacity={1}
+          mouseInteraction
+          mouseStrength={1}
+          mouseRadius={0.35}
+        />
         )}
       </div>
       {/* <div className="absolute inset-0 z-40">
@@ -93,32 +65,19 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 min-h-screen">
         <div className=" h-screen max-w-7xl px-4 sm:px-8 lg:px-16">
-          <div className="grid h-full grid-cols-1 lg:grid-cols-[60%_40%] gap-4 sm:gap-6 lg:gap-0">
+          <div className="grid h-full grid-cols-1 lg:grid-cols-[60%_40%]">
 
             {/* LEFT SIDE */}
-              <div
-                className="z-30 flex flex-col justify-end items-start pb-12 xs:pb-16 sm:pb-20 md:pb-24 pl-4 sm:pl-6 lg:pl-0 md:relative md:left-auto md:bottom-auto md:w-auto"
-                style={
-                  heroOffset === null
-                    ? undefined
-                    : {
-                        position: 'absolute',
-                        left: '1rem',
-                        bottom: `${heroOffset}px`,
-                        width: 'calc(100% - 2rem)',
-                      }
-                }
-              >
+            <div className="flex flex-col justify-end pb-16 sm:pb-24">
 
 <Shuffle 
  className="
   tracking-[-0.01em]
    mx-0!
-   style={{ textAlign: 'left' }}
-   text-4xl!
-   xs:text-5xl!
+   text-left!
+   text-5xl!
    sm:text-6xl!
-   md:text-[100px]!
+   md:text-[130px]!
    lg:text-[150px]!
    xl:text-[140px]!
   font-black
@@ -144,10 +103,9 @@ export default function Hero() {
   tracking-[-0.02em]
    mx-0!
    text-left!
-   style={{ textAlign: 'left' }}
-   xs:text-3xl!
+   text-3xl!
    sm:text-5xl!
-   md:text-[100px]!
+   md:text-[130px]!
    lg:text-[150px]!
    xl:text-[140px]!
   font-black
@@ -211,7 +169,7 @@ export default function Hero() {
                 </GlitchText>
               </div>  */}
 {/* data-aos="fade-right" data-aos-duration="800" */}
-<div className="flex flex-wrap items-center gap-2 xs:gap-2.5 sm:gap-3 pt-3 xs:pt-4 text-base xs:text-lg sm:text-2xl font-bold md:text-4xl" data-aos="fade-right" data-aos-duration="600" data-aos-delay="800">  <span className="text-white whitespace-nowrap text-base xs:text-lg sm:text-2xl md:text-4xl">
+<div className="flex flex-wrap items-center gap-2 sm:gap-3 pt-4 text-lg sm:text-2xl font-bold md:text-4xl" data-aos="fade-right" data-aos-duration="600" data-aos-delay="800">  <span className="text-white whitespace-nowrap">
     I'm a
   </span>
 
@@ -223,16 +181,12 @@ export default function Hero() {
     ]}
     mainClassName="
     min-w-0
-  xs:min-w-[160px]
   sm:min-w-[220px]
-  px-2
-  xs:px-3
+  px-3
   sm:px-4
-  py-1
-  xs:py-1.5
+  py-1.5
   sm:py-2
-  rounded-lg
-  xs:rounded-xl
+  rounded-xl
   bg-teal-300
   text-black
   font-black
@@ -272,11 +226,12 @@ export default function Hero() {
             </div>
 
             {/* RIGHT SIDE */}
-            <div className="flex justify-center items-center lg:h-full max-lg:py-6 max-lg:pb-10 lg:pl-5">
-              <div className="w-full lg:h-200 lg:translate-x-56 ">
-                {ready && <Lanyard position={[0, 2, 32]} fov={30} gravity={[0, -40, 0]} size={1.1} />}
-              </div>
-            </div>
+            
+<div className="flex justify-center items-center lg:h-full max-lg:py-6 max-lg:pb-10 lg:pl-5">
+  <div className="w-full md:h-200 lg:translate-x-56 ">
+    {ready && !isMobile && <Lanyard position={[0, 0, 24]} gravity={[0, -40, 0]} />}
+  </div>
+</div>
 
           </div>
         </div>

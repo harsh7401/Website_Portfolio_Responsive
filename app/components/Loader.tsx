@@ -2,28 +2,31 @@
 
 import { useEffect, useState } from "react";
 import BlurText from "@/components/BlurText";
+import TextType from "@/components/TextType";
 
 
-export  function Loader() {
+export  function Loader({ onComplete }: { onComplete?: () => void }) {
   const [progress, setProgress] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
 useEffect(() => {
-  setIsMobile(window.innerWidth < 768);
+  const mobile = window.innerWidth < 768;
+  setIsMobile(mobile);
+  const increment = mobile ? 4 : 2;
 const interval = setInterval(() => {
 setProgress((prev) => {
-if (prev >= 100) {
+const next = prev + increment;
+if (next >= 100) {
 clearInterval(interval);
+if (onComplete) setTimeout(onComplete, 300);
 return 100;
 }
-
-  return prev + 2;
+  return next;
 });
-
 }, 100);
 
 return () => clearInterval(interval);
-}, []);
+}, [onComplete]);
 
   return (
     <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-black">
@@ -85,6 +88,19 @@ return () => clearInterval(interval);
         {progress}%
       </p>
 
+      <TextType
+        text={[
+          "Hover each component to see the magic",
+          "Welcome to my portfolio"
+        ]}
+        className="text-base sm:text-xl md:text-3xl lg:text-5xl font-bold pt-10"
+        typingSpeed={40}
+        deletingSpeed={20}
+        pauseDuration={50}
+        initialDelay={0}
+        loop={true}
+        showCursor
+      />
     </div>
     
   );

@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import Navbar from "./components/Navbar";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Loader } from "./components/Loader";
 
 const Hero = dynamic(() => import("./components/Hero"), { ssr: false });
@@ -15,17 +15,8 @@ const Contact = dynamic(() => import("./components/Contact").then(m => ({ defaul
 export default function Home() {
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-  const duration = window.innerWidth < 768 ? 800 : 2500;
-  const timer = setTimeout(() => {
-    setLoading(false);
-  }, duration);
-
-  return () => clearTimeout(timer);
-}, []);
-
 if (loading) {
-  return <Loader />;
+  return <Loader onComplete={() => setLoading(false)} />;
 }
   return (
       <main>

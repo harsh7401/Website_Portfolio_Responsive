@@ -33,8 +33,8 @@ const projects = [
     description:
       "An Agency website which helps to design sleek platforms, software, and immersive journeys for scaling brands.",
     image: "/project1.png",
-    source: "https://github.com/harsh7401/xartech_com",
-    live: "#",
+    source: "page",
+    live: "https://www.xartech.io/",
   },
    {
     title: "Portfolio",

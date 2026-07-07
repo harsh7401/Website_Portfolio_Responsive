@@ -91,12 +91,13 @@ return () => clearInterval(interval);
       <TextType
         text={[
           "Hover each component to see the magic",
-          "Welcome to my portfolio"
+          "Welcome to my portfolio",
+          "You can sea my work at project section"
         ]}
         className="text-base sm:text-xl md:text-3xl lg:text-5xl font-bold pt-10"
-        typingSpeed={40}
+        typingSpeed={45}
         deletingSpeed={20}
-        pauseDuration={50}
+        pauseDuration={100}
         initialDelay={0}
         loop={true}
         showCursor

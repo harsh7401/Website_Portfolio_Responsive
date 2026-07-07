@@ -2,10 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Be_Vietnam_Pro } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
-import Script from "next/script";
-
-
 import GlobalCursor from "@/components/GlobalCursor";
+import BotpressScripts from "@/components/BotpressScripts";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,15 +42,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <GlobalCursor />
         {children}
-                <Script
-          src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"
-          strategy="afterInteractive"
-        />
-
-        <Script
-          src="https://files.bpcontent.cloud/2026/06/18/16/20260618163539-F2RYSAYV.js"
-          strategy="afterInteractive"
-        />
+                <BotpressScripts />
 
         <Toaster
     position="top-right"

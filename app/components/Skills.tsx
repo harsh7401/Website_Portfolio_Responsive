@@ -163,7 +163,7 @@ export function Skills() {
     </div>
 
       <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl flex-col">
-        <h2 className="mb-4 shrink-0 text-2xl xs:text-2xl sm:text-3xl md:text-4xl font-bold tracking-wider text-white"data-aos="fade-right" data-aos-duration="500">
+        <h2 className="mb-4 shrink-0 text-2xl xs:text-2xl sm:text-3xl md:text-4xl font-bold tracking-wider text-white" data-aos={!isMobile ? "fade-right" : undefined} data-aos-duration="500">
           Skills
         </h2>
 
@@ -177,7 +177,7 @@ export function Skills() {
       <div>
         <h3
   className="mb-2 text-[10px] xs:text-[11px] sm:text-xs font-semibold uppercase tracking-wide text-gray-400"
-  data-aos="zoom-in"
+  data-aos={!isMobile ? "zoom-in" : undefined}
   data-aos-duration="400"
 >
   <div></div>
@@ -203,7 +203,7 @@ export function Skills() {
         py-1
         text-gray-100
       "
-      data-aos="flip-up"
+      data-aos={!isMobile ? "flip-up" : undefined}
       data-aos-duration="400"
       data-aos-delay={index * 20}
     >
@@ -221,7 +221,7 @@ export function Skills() {
 
       {/* Libraries */}
       <div>
-  <h3 className="mb-2 text-[10px] xs:text-[11px] sm:text-xs font-semibold uppercase tracking-wide text-gray-400 " data-aos="zoom-in" data-aos-duration="400" data-aos-delay="200">
+  <h3 className="mb-2 text-[10px] xs:text-[11px] sm:text-xs font-semibold uppercase tracking-wide text-gray-400 " data-aos={!isMobile ? "zoom-in" : undefined} data-aos-duration="400" data-aos-delay="200">
     {skillCategories[1].title}
   </h3>
 
@@ -230,7 +230,7 @@ export function Skills() {
       <div
         key={it.label}
         className="cursor-target flex items-center gap-1.5 xs:gap-2 rounded-md border border-neutral-700/80 bg-neutral-800/50 px-1 xs:px-1.5 py-1 text-gray-100"
-        data-aos="flip-up"
+        data-aos={!isMobile ? "flip-up" : undefined}
         data-aos-duration="400"
         data-aos-delay={200 + index * 100}
       >
@@ -253,7 +253,7 @@ export function Skills() {
 
      {/* Backend */}
 <div>
-  <h3 className="mb-2 text-[10px] xs:text-[11px] sm:text-xs font-semibold uppercase tracking-wide text-gray-400"  data-aos="zoom-in" data-aos-duration="400" data-aos-delay="1200">
+  <h3 className="mb-2 text-[10px] xs:text-[11px] sm:text-xs font-semibold uppercase tracking-wide text-gray-400"  data-aos={!isMobile ? "zoom-in" : undefined} data-aos-duration="400" data-aos-delay="1200">
     {skillCategories[2].title}
   </h3>
 
@@ -262,7 +262,7 @@ export function Skills() {
       <div
         key={it.label}
         className="cursor-target flex items-center gap-1.5 xs:gap-2 rounded-md border border-neutral-700/80 bg-neutral-800/50 px-1 xs:px-1.5 py-1 text-gray-100"
-        data-aos="flip-up"
+        data-aos={!isMobile ? "flip-up" : undefined}
         data-aos-duration="400"
         data-aos-delay={800 + index * 100}
       >
@@ -280,7 +280,7 @@ export function Skills() {
 
      {/* AI / ML */}
 <div>
-  <h3 className="mb-0 text-[10px] xs:text-[11px] sm:text-xs font-semibold uppercase tracking-wide text-gray-400" data-aos="zoom-in" data-aos-duration="400" data-aos-delay="1700">
+  <h3 className="mb-0 text-[10px] xs:text-[11px] sm:text-xs font-semibold uppercase tracking-wide text-gray-400" data-aos={!isMobile ? "zoom-in" : undefined} data-aos-duration="400" data-aos-delay="1700">
     {skillCategories[3].title}
   </h3>
 
@@ -289,7 +289,7 @@ export function Skills() {
       <div
         key={it.label}
         className="cursor-target flex items-center gap-1.5 xs:gap-2 rounded-md border border-neutral-700/80 bg-neutral-800/50 px-1 xs:px-1.5 py-1 text-gray-100"
-        data-aos="flip-up"
+        data-aos={!isMobile ? "flip-up" : undefined}
         data-aos-duration="400"
         data-aos-delay={900 + index * 100}
       >
@@ -307,7 +307,7 @@ export function Skills() {
      
      {/* Tools */}
 <div>
-  <h3 className="mb-2 text-[10px] xs:text-[11px] sm:text-xs font-semibold uppercase tracking-wide text-gray-400 "data-aos="zoom-in" data-aos-duration="400" data-aos-delay="1700">
+  <h3 className="mb-2 text-[10px] xs:text-[11px] sm:text-xs font-semibold uppercase tracking-wide text-gray-400 " data-aos={!isMobile ? "zoom-in" : undefined} data-aos-duration="400" data-aos-delay="1700">
     {skillCategories[4].title}
   </h3>
 
@@ -316,7 +316,7 @@ export function Skills() {
       <div
         key={it.label}
         className="cursor-target flex items-center gap-1.5 xs:gap-2 rounded-md border border-neutral-700/80 bg-neutral-800/50 px-1 xs:px-1.5 py-1 text-gray-100"
-        data-aos="flip-up"
+        data-aos={!isMobile ? "flip-up" : undefined}
         data-aos-duration="400"
         data-aos-delay={1000 + index * 100}
       >
@@ -356,9 +356,8 @@ export function Skills() {
 /> */}
  <img 
   className="w-100 l-100" 
-  data-aos="zoom-in" 
+  data-aos={!isMobile ? "zoom-in" : undefined} 
   data-aos-duration="500"
-  data-aos-anchor="#skills"
   src="/chipgif3.svg" 
   alt="" 
 />

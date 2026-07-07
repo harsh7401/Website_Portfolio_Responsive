@@ -13,11 +13,11 @@ const Education = dynamic(() => import("./components/Education").then(m => ({ de
 const Contact = dynamic(() => import("./components/Contact").then(m => ({ default: m.Contact })), { ssr: false });
 
 export default function Home() {
-//   const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
-// if (loading) {
-//   return <Loader onComplete={() => setLoading(false)} />;
-// }
+if (loading) {
+  return <Loader onComplete={() => setLoading(false)} />;
+}
   return (
       <main>
         <Navbar />

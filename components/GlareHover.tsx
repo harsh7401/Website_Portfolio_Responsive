@@ -46,9 +46,7 @@ const GlareHover: React.FC<GlareHoverProps> = ({
       {children}
 
       {/* Sweep Glare */}
-      <div
-        className="pointer-events-none absolute inset-0 overflow-hidden"
-      >
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div
           className="absolute top-0 h-[250%] w-[40%]"
           style={{
@@ -61,7 +59,8 @@ const GlareHover: React.FC<GlareHoverProps> = ({
               transparent 100%
             )`,
             left: isHovered ? "130%" : "-70%",
-            transition: `left ${transitionDuration}ms ease`,
+            // Only apply the transition duration when moving forward (hovered)
+            transition: isHovered ? `left ${transitionDuration}ms ease` : "none",
             filter: "blur(12px)",
             transform: "translateY(-30%)",
           }}

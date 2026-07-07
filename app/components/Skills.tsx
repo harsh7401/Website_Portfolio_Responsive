@@ -127,7 +127,7 @@ export function Skills() {
   useEffect(() => {
     const obs = new IntersectionObserver(
       ([entry]) => { setInView(entry.isIntersecting); },
-      { threshold: 0.5 }
+      { threshold: 0.9 }
     );
     if (sectionRef.current) obs.observe(sectionRef.current);
     return () => obs.disconnect();

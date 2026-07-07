@@ -168,6 +168,16 @@ export function Skills() {
         </h2>
 
        <div className="flex-1 overflow-y-auto">
+  <div className="mb-4 flex items-center justify-center lg:hidden">
+    <img
+      className="w-full max-w-[220px] sm:max-w-[260px]"
+      data-aos="zoom-in"
+      data-aos-duration="500"
+      src="/chipgif3.svg"
+      alt=""
+    />
+  </div>
+
   <div className="grid gap-4 xs:gap-5 sm:gap-6 lg:grid-cols-3">
 
     {/* COLUMN 1 */}
@@ -334,7 +344,7 @@ export function Skills() {
     </div>
 
     {/* COLUMN 3 */}
-    <div className="flex h-full items-center justify-center">
+    <div className="hidden h-full items-center justify-center lg:flex">
 
      {/* <StickerPeel
   imageSrc="/TrailLogo.png"

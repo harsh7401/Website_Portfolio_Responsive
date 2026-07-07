@@ -46,12 +46,12 @@ export default function RootLayout({
         {children}
                 <Script
           src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"
-          strategy="lazyOnload"
+          strategy="afterInteractive"
         />
 
         <Script
           src="https://files.bpcontent.cloud/2026/06/18/16/20260618163539-F2RYSAYV.js"
-          strategy="lazyOnload"
+          strategy="afterInteractive"
         />
 
         <Toaster

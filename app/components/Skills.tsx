@@ -280,7 +280,7 @@ export function Skills() {
 
      {/* AI / ML */}
 <div>
-  <h3 className="mb-2 text-[10px] xs:text-[11px] sm:text-xs font-semibold uppercase tracking-wide text-gray-400" data-aos="zoom-in" data-aos-duration="400" data-aos-delay="1700">
+  <h3 className="mb-0 text-[10px] xs:text-[11px] sm:text-xs font-semibold uppercase tracking-wide text-gray-400" data-aos="zoom-in" data-aos-duration="400" data-aos-delay="1700">
     {skillCategories[3].title}
   </h3>
 
@@ -307,7 +307,7 @@ export function Skills() {
      
      {/* Tools */}
 <div>
-  <h3 className="pt-0.5 mb-1 text-[10px] xs:text-[11px] sm:text-xs font-semibold uppercase tracking-wide text-gray-400 "data-aos="zoom-in" data-aos-duration="400" data-aos-delay="1700">
+  <h3 className="mb-2 text-[10px] xs:text-[11px] sm:text-xs font-semibold uppercase tracking-wide text-gray-400 "data-aos="zoom-in" data-aos-duration="400" data-aos-delay="1700">
     {skillCategories[4].title}
   </h3>
 
@@ -315,7 +315,7 @@ export function Skills() {
     {skillCategories[4].items.map((it, index) => (
       <div
         key={it.label}
-        className="cursor-target flex items-center gap-1.5 xs:gap-2 rounded-md border border-neutral-700/80 bg-neutral-800/50 px-1 xs:px-1.5 py-1 text-gray-100"
+        className="cursor-target flex items-center gap-1 xs:gap-2 rounded-md border border-neutral-700/80 bg-neutral-800/50 px-1 xs:px-1.5 py-1 text-gray-100"
         data-aos="flip-up"
         data-aos-duration="400"
         data-aos-delay={1000 + index * 100}

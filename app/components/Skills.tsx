@@ -315,7 +315,7 @@ export function Skills() {
     {skillCategories[4].items.map((it, index) => (
       <div
         key={it.label}
-        className="cursor-target flex items-center gap-1 xs:gap-2 rounded-md border border-neutral-700/80 bg-neutral-800/50 px-1 xs:px-1.5 py-1 text-gray-100"
+        className="cursor-target flex items-center gap-1.5 xs:gap-2 rounded-md border border-neutral-700/80 bg-neutral-800/50 px-1 xs:px-1.5 py-1 text-gray-100"
         data-aos="flip-up"
         data-aos-duration="400"
         data-aos-delay={1000 + index * 100}
@@ -354,8 +354,14 @@ export function Skills() {
   spinDuration={20}
   className="custom-class"
 /> */}
- <img className="w-100 l-100" data-aos="zoom-in" data-aos-duration="500"
-src="/chipgif3.svg" alt="" />
+ <img 
+  className="w-100 l-100" 
+  data-aos="zoom-in" 
+  data-aos-duration="500"
+  data-aos-anchor="#skills"
+  src="/chipgif3.svg" 
+  alt="" 
+/>
 
 {/* <img className="w-100 l-100"
 src="/techgif3.svg" alt="" /> */}

@@ -354,8 +354,8 @@ export function Skills() {
   spinDuration={20}
   className="custom-class"
 /> */}
-<img className="w-100 l-100" data-aos="zoom-in" data-aos-duration="1000"
-src="/chipgif3.svg" alt="" fetchPriority="high" loading="eager" />
+ <img className="w-100 l-100" data-aos="zoom-in" data-aos-duration="1000"
+src="/chipgif3.svg" alt="" />
 
 {/* <img className="w-100 l-100"
 src="/techgif3.svg" alt="" /> */}
